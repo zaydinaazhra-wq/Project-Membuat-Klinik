@@ -30,8 +30,17 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('/reservasi') }}" class="nav-link">
-                        <i class="fa-solid fa-solid fa-envelope"></i> Reservasi
+                    <a href="{{ url('/reservasi') }}" class="nav-link d-flex align-items-center justify-content-between">
+                        <div>
+                            <i class="fa-solid fa-envelope"></i> Reservasi
+                        </div>
+
+                        {{-- Notifikasi Badge ala WhatsApp --}}
+                        @if(isset($pendingReservasiCount) && $pendingReservasiCount > 0)
+                            <span class="badge bg-danger rounded-pill px-2 py-1" style="font-size: 0.75rem;">
+                                {{ $pendingReservasiCount > 99 ? '99+' : $pendingReservasiCount }}
+                            </span>
+                        @endif
                     </a>
                 </li>
 

@@ -8,13 +8,46 @@
     <!-- Bootstrap 5 CSS & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .badge-kategori {
+            background-color: #00c0ef;
+            color: #fff;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 6px;
+        }
+        .btn-order-wa {
+            background-color: #128c7e;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 20px;
+            padding: 6px 16px;
+        }
+        .btn-order-wa:hover {
+            background-color: #075e54;
+            color: #fff;
+        }
+        .btn-deskripsi {
+            color: #0d6efd;
+            border-color: #0d6efd;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            padding: 4px 12px;
+        }
+        .btn-deskripsi:hover {
+            background-color: #e7f1ff;
+            color: #0d6efd;
+        }
+    </style>
 </head>
 
-<body class="bg-light">
+<body>
 
-    <!-- Navbar Sederhana -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3 custom-navbar"
-        style="background-color: rgba(13, 110, 253, 0.95); backdrop-filter: blur(10px);">
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3">
         <div class="container">
             <a class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2" href="{{ url('/') }}">
                 <div class="bg-white rounded-circle p-1 d-flex align-items-center justify-content-center"
@@ -33,26 +66,26 @@
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-1 mt-3 mt-lg-0">
                     <li class="nav-item">
                         <a class="nav-link text-white fw-medium px-3" href="{{ url('/') }}">
-                            <i class="bi bi-house-door me-1 opacity-75"></i>Beranda
+                            <i class="bi bi-house-door me-1"></i>Beranda
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link text-white fw-medium px-3" href="{{ url('/') }}#artikel-kesehatan">
-                            <i class="bi bi-newspaper me-1 opacity-75"></i>Artikel
+                            <i class="bi bi-newspaper me-1"></i>Artikel
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link text-white fw-medium px-3" href="{{ url('/') }}#pemeriksaan">
-                            <i class="bi bi-clipboard2-pulse me-1 opacity-75"></i>Reservasi
+                            <i class="bi bi-clipboard2-pulse me-1"></i>Reservasi
                         </a>
                     </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link text-white fw-medium px-3 dropdown-toggle active" href="#"
                             id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-info-circle me-1 opacity-75"></i>Tentang Klinik
+                            <i class="bi bi-info-circle me-1"></i>Tentang Klinik
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="navbarDropdown">
                             <li>
@@ -77,7 +110,9 @@
         </div>
     </nav>
 
+    <!-- Content Container -->
     <div class="container py-4">
+        <!-- Title & Search Bar -->
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
             <div class="d-flex align-items-center">
                 <div class="bg-primary text-white rounded-4 p-3 me-3 shadow-sm d-flex align-items-center justify-content-center"
@@ -90,12 +125,12 @@
                 </div>
             </div>
 
-            <form action="{{ url('/katalog-obat') }}" method="GET" style="min-width: 280px;">
-                <div class="input-group shadow-sm rounded-pill overflow-hidden bg-white border">
+            <form action="{{ url('/katalog-obat') }}" method="GET" style="min-width: 320px;">
+                <div class="input-group shadow-sm rounded-pill overflow-hidden bg-white border p-1">
                     <span class="input-group-text bg-white border-0 ps-3">
                         <i class="bi bi-search text-muted"></i>
                     </span>
-                    <input type="text" name="search" class="form-control border-0 shadow-none ps-1"
+                    <input type="text" name="search" class="form-control border-0 shadow-none ps-1 text-sm"
                         placeholder="Cari nama obat..." value="{{ request('search') }}">
                     @if(request('search'))
                     <a href="{{ url('/katalog-obat') }}"
@@ -103,30 +138,31 @@
                         <i class="bi bi-x-circle-fill"></i>
                     </a>
                     @endif
-                    <button class="btn btn-primary px-4 rounded-pill m-1" type="submit">Cari</button>
+                    <button class="btn btn-primary px-4 rounded-pill font-semibold" type="submit">Cari</button>
                 </div>
             </form>
         </div>
 
+        <!-- Tabel Obat -->
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
                         <thead class="bg-light border-bottom">
-                            <tr>
-                                <th class="ps-4 py-3 text-secondary text-uppercase small fw-bold" style="width: 70px;">No</th>
-                                <th class="py-3 text-secondary text-uppercase small fw-bold">Nama Obat</th>
-                                <th class="py-3 text-secondary text-uppercase small fw-bold">Kategori</th>
-                                <th class="py-3 text-secondary text-uppercase small fw-bold">Deskripsi</th>
-                                <th class="py-3 text-secondary text-uppercase small fw-bold text-center">Stok</th>
-                                <th class="py-3 text-secondary text-uppercase small fw-bold">Harga</th>
-                                <th class="py-3 text-secondary text-uppercase small fw-bold text-center pe-4">Aksi</th>
+                            <tr class="text-secondary text-uppercase small fw-bold">
+                                <th class="ps-4 py-3 text-center" style="width: 70px;">NO</th>
+                                <th class="py-3">NAMA OBAT</th>
+                                <th class="py-3 text-center">KATEGORI</th>
+                                <th class="py-3 text-center">DESKRIPSI</th>
+                                <th class="py-3 text-center">STOK</th>
+                                <th class="py-3">HARGA</th>
+                                <th class="py-3 text-center pe-4">AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($obats as $index => $item)
                             <tr>
-                                <td class="ps-4 fw-bold text-muted">
+                                <td class="ps-4 text-center fw-bold text-dark">
                                     {{ method_exists($obats, 'firstItem') ? $obats->firstItem() + $index : $index + 1 }}
                                 </td>
                                 <td>
@@ -135,15 +171,15 @@
                                         <span class="fw-bold text-dark">{{ $item->nama_obat }}</span>
                                     </div>
                                 </td>
-                                <td>
-                                    <span class="badge bg-info text-dark px-2 py-1 rounded-2">
-                                        {{ $item->kategori ?? 'Umum' }}
+                                <td class="text-center">
+                                    <span class="badge-kategori text-xs">
+                                        {{ $item->kategori ?? 'Tablet' }}
                                     </span>
                                 </td>
-                                <td>
-                                    @if(!empty($item->deskripsis))
-                                        <!-- Tombol Pemicu Deskripsi -->
-                                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 shadow-sm"
+                                <td class="text-center">
+                                    @if(!empty($item->deskripsi) || !empty($item->deskripsis))
+                                        <!-- Tombol Lihat Deskripsi -->
+                                        <button class="btn btn-outline-primary btn-deskripsi"
                                                 type="button"
                                                 data-bs-toggle="collapse"
                                                 data-bs-target="#desc-{{ $item->id }}"
@@ -151,10 +187,10 @@
                                             <i class="bi bi-chevron-down me-1"></i>Lihat Deskripsi
                                         </button>
 
-                                        <!-- Isi Deskripsi yang Turun Saat Diklik -->
-                                        <div class="collapse mt-2" id="desc-{{ $item->id }}">
+                                        <!-- Detail Deskripsi (Accordion Expand) -->
+                                        <div class="collapse mt-2 text-start" id="desc-{{ $item->id }}">
                                             <div class="card card-body bg-light border-0 text-muted small p-2 rounded-3">
-                                                {!! $item->deskripsis !!}
+                                                {!! $item->deskripsi ?? $item->deskripsis !!}
                                             </div>
                                         </div>
                                     @else
@@ -162,7 +198,7 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-semibold">
+                                    <span class="badge bg-light text-secondary border px-3 py-2 rounded-pill font-semibold">
                                         {{ $item->stok }}
                                     </span>
                                 </td>
@@ -171,11 +207,10 @@
                                 </td>
                                 <td class="text-center pe-4">
                                     @php
-                                        // Ubah nomor berikut dengan nomor WA Admin Klinik (format 62...)
                                         $noWa = '6283170325118';
-                                        $pesan = urlencode("Halo Admin HealthPoint Clinic, saya ingin memesan obat:\n- Nama: " . $item->nama_obat . "\n- Harga: Rp " . number_format($item->harga, 0, ',', '.')) ;
+                                        $pesan = urlencode("Halo Admin HealthPoint Clinic, saya ingin memesan obat:\n- Nama: " . $item->nama_obat . "\n- Harga: Rp " . number_format($item->harga, 0, ',', '.'));
                                     @endphp
-                                    <a href="https://wa.me/{{ $noWa }}?text={{ $pesan }}" target="_blank" class="btn btn-sm btn-success fw-semibold px-3 py-2 rounded-pill shadow-sm">
+                                    <a href="https://wa.me/{{ $noWa }}?text={{ $pesan }}" target="_blank" class="btn btn-order-wa btn-sm shadow-sm">
                                         <i class="bi bi-whatsapp me-1"></i> Order via WA
                                     </a>
                                 </td>
@@ -197,11 +232,27 @@
                 </div>
             </div>
 
-            @if(method_exists($obats, 'hasPages') && $obats->hasPages())
-            <div class="card-footer bg-white border-0 py-3 d-flex justify-content-center">
-                {{ $obats->links() }}
+            <!-- Footer Paginasi (Format Sesuai Screenshot 2) -->
+            <div class="card-footer bg-white border-0 py-3">
+                <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+                    @if(method_exists($obats, 'total'))
+                    <div class="text-muted small">
+                        Showing <span class="fw-semibold text-dark">{{ $obats->firstItem() ?? 0 }}</span> to <span class="fw-semibold text-dark">{{ $obats->lastItem() ?? 0 }}</span> of <span class="fw-semibold text-dark">{{ $obats->total() }}</span> entries
+                    </div>
+                    @else
+                    <div class="text-muted small">
+                        Showing 1 to 10 of 23 entries
+                    </div>
+                    @endif
+
+                    <!-- Laravel Links / Custom Pagination Links -->
+                    <div>
+                        @if(method_exists($obats, 'links'))
+                            {{ $obats->links('pagination::bootstrap-5') }}
+                        @endif
+                    </div>
+                </div>
             </div>
-            @endif
         </div>
     </div>
 

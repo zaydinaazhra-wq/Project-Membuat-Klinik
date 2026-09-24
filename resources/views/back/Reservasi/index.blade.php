@@ -40,7 +40,7 @@
                                         <i class="fa-brands fa-whatsapp me-1"></i>{{ $item->kontak }}
                                     </a>
                                 </td>
-                                <td>{{ date('Y-m-d', strtotime($item->hari)) }}</td>
+                                <td>{{ date('d M Y', strtotime($item->hari)) }}</td>
                                 <td>{{ $item->keluhan }}</td>
                                 <td class="text-center">
                                     @if($item->status == 'menunggu')

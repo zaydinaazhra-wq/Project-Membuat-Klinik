@@ -84,7 +84,7 @@ class TransaksiExport implements FromCollection, WithHeadings, WithMapping, Shou
                 // Format Tanggal Judul (contoh: 22-09-2026 s.d 23-09-2026)
                 $tglAwalFormatted = Carbon::parse($this->tglAwal)->format('d-M-Y');
                 $tglAkhirFormatted = Carbon::parse($this->tglAkhir)->format('d-M-Y');
-                $judul = "REKAP TRANSAKSI Tangga (" . $tglAwalFormatted . " s.d " . $tglAkhirFormatted . ")";
+                $judul = "REKAP TRANSAKSI TANGGAL(" . $tglAwalFormatted . " s.d " . $tglAkhirFormatted . ")";
 
                 // 1. Tulis Judul di Baris 1 & 2
                 $sheet->mergeCells("A1:I2");
