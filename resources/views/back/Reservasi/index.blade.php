@@ -2,7 +2,6 @@
 
 @section('content')
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-    <!-- Judul Halaman dengan Icon -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2 fw-bold text-dark"><i class="fa-solid fa-calendar-check me-2"></i>Reservasi Pasien</h1>
     </div>
@@ -14,7 +13,6 @@
         </div>
     @endif
 
-    <!-- Card Tabel -->
     <div class="card border-0 shadow-sm rounded-3">
         <div class="card-body p-3">
             <div class="table-responsive">

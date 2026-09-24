@@ -11,17 +11,16 @@ class Article extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_id', 
-        'title', 
-        'slug', 
-        'desc', 
-        'img', 
-        'views', 
-        'status', 
+        'category_id',
+        'title',
+        'slug',
+        'desc',
+        'img',
+        'views',
+        'status',
         'publish_date',
     ];
 
-    // relasi ke category 
     public function Category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

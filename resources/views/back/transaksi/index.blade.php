@@ -8,12 +8,10 @@
 
     <div class="mt-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <!-- Tombol Tambah Transaksi di kiri -->
             <a href="{{ route('back.transaksi.create') }}" class="btn btn-success">
                 <i class="fas fa-plus me-1"></i> Tambah Transaksi
             </a>
 
-            <!-- Tombol Export Excel Memicu Modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exportExcelModal">
                 <i class="fas fa-file-excel me-1"></i> Export Excel
             </button>
@@ -78,7 +76,6 @@
     </div>
 </main>
 
-<!-- Modal Filter Tanggal Rekap Excel -->
 <div class="modal fade" id="exportExcelModal" tabindex="-1" aria-labelledby="exportExcelModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

@@ -105,7 +105,6 @@
 </style>
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 dashboard-container">
-    <!-- Banner Menyapa Admin -->
     <div class="row mb-4">
         <div class="col-12">
             <div class="card border-0 shadow-sm p-4 text-white rounded-4"
@@ -131,7 +130,6 @@
         </div>
     </div>
 
-    <!-- Ringkasan Statistik (4 Kartu) -->
     <div class="row g-3 mb-4">
         <!-- Total Artikel -->
         <div class="col-12 col-sm-6 col-xl-3">
@@ -206,7 +204,6 @@
         </div>
     </div>
 
-    <!-- Data Terkini (Dua Tabel) -->
     <div class="row g-4">
         <!-- Tabel Artikel Terbaru -->
         <div class="col-12 col-lg-6">
@@ -287,7 +284,7 @@
                             <tr class="text-muted small">
                                 <th class="text-center" style="width: 40px;">#</th>
                                 <th>Nama Pasien</th>
-                                <th>NIK</th> <!-- Mengubah header Obat Diberikan jadi NIK -->
+                                <th>NIK</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -305,7 +302,6 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <!-- Mengubah isian data dari obat menjadi nik_pasien -->
                                     <span class="fw-semibold text-secondary">{{ $item->nik_pasien ?? '-' }}</span>
                                 </td>
                                 <td class="text-center">

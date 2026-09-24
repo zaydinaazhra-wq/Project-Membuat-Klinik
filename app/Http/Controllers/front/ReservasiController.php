@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class ReservasiController extends Controller
 {
-    // Menampilkan halaman form reservasi di frontend
     public function index()
     {
         return view('front.reservasi');
@@ -17,7 +16,6 @@ class ReservasiController extends Controller
     // Menyimpan data reservasi dari pengunjung
     public function store(Request $request)
     {
-        // 1. Validasi Input dari Form
         $request->validate([
             'nama'    => 'required|string|max:255',
             'kontak'  => 'required|string|max:20',
@@ -26,7 +24,6 @@ class ReservasiController extends Controller
             'keluhan' => 'required|string',
         ]);
 
-        // 2. Simpan Data ke Database (Status otomatis "menunggu")
         Reservasi::create([
             'nama'    => $request->nama,
             'kontak'  => $request->kontak,
@@ -36,7 +33,6 @@ class ReservasiController extends Controller
             'status'  => 'menunggu',
         ]);
 
-        // 3. Format Pesan WhatsApp
         $nomorWA = '6283170325118'; // Nomor WA Admin Klinik
 
         $pesan  = "*HALO ADMIN HEALTHPOINT CLINIC*\n";
@@ -48,7 +44,6 @@ class ReservasiController extends Controller
         $pesan .= "*Keluhan:* " . $request->keluhan . "\n\n";
         $pesan .= "Mohon konfirmasi jadwal reservasi saya. Terima kasih!";
 
-        // 4. Redirect Langsung ke WhatsApp Admin
         $urlWhatsApp = "https://wa.me/{$nomorWA}?text=" . urlencode($pesan);
 
         return redirect()->away($urlWhatsApp);

@@ -23,7 +23,6 @@
             <hr>
 
             <div class="row g-4">
-                <!-- Informasi Pasien -->
                 <div class="col-md-5">
                     <h5 class="fw-bold"><i class="fa-solid fa-user me-2"></i>Informasi Pasien</h5>
                     <table class="table table-borderless mt-3">
@@ -46,7 +45,6 @@
                     </table>
                 </div>
 
-                <!-- Rincian Medis & Tabel Obat -->
                 <div class="col-md-7">
                     <h5 class="fw-bold"><i class="fa-solid fa-prescription-bottle-medical me-2"></i>Rincian Obat & Tagihan</h5>
 

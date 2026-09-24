@@ -33,7 +33,6 @@
                     <tr>
                         <th class="bg-light">Foto Artikel</th>
                         <td>
-                            {{-- Mengecek jika ada foto di kolom 'img' atau 'image' --}}
                             @php
                                 $fotoPath = $articles->img ?? $articles->image ?? $article->img ?? $article->image ?? null;
                             @endphp

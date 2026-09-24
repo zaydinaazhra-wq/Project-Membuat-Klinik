@@ -58,7 +58,6 @@
                     class="form-control @error('desc') is-invalid @enderror">{{ old('desc', $article->desc) }}</textarea>
             </div>
 
-            <!-- Input Foto & Preview -->
             <div class="mb-3">
                 <label for="img" class="form-label">Foto (Max 2MB)</label>
                 <input type="file" name="img" id="img" class="form-control @error('img') is-invalid @enderror" accept="image/*" onchange="previewImage(event)">
@@ -114,7 +113,6 @@
 <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 
 <script>
-    // Fungsi untuk preview foto saat file baru dipilih
     function previewImage(event) {
         const input = event.target;
         const preview = document.getElementById('preview-foto');

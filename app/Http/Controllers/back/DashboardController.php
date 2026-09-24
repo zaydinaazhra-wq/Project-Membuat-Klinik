@@ -19,10 +19,9 @@ class DashboardController extends Controller
             'total_articles' => Article::count(),
             'total_tenaga_medis' => TenagaMedis::count(),
             'total_obat' => Obat::count(),
-            // Menghitung jumlah transaksi khusus untuk hari ini
-            'total_transaksi_today' => Transaksi::whereDate('created_at', Carbon::today())->count(),
-            'latest_articles' => Article::latest()->take(5)->get(),
-            'latest_transactions' => Transaksi::with(['obat'])->latest()->take(5)->get(),
+            'total_transaksi_today' => Transaksi::whereDate('created_at', Carbon::today())->count(), // hitung perhari
+            'latest_articles' => Article::latest()->take(3)->get(),
+            'latest_transactions' => Transaksi::with(['obat'])->latest()->take(3)->get(),
         ]);
     }
 }

@@ -100,7 +100,6 @@
                         } else {
                             $fileName = str_replace(['public/', 'storage/', 'back/'], '', $article->img);
                             $fileName = ltrim($fileName, '/');
-                            // DIUBAH: Menggunakan storage/ tanpa back/
                             $gambarURL = asset('storage/' . $fileName);
                         }
                     }
@@ -149,7 +148,6 @@
                             } else {
                                 $fName = str_replace(['public/', 'storage/', 'back/'], '', $recent->img);
                                 $fName = ltrim($fName, '/');
-                                // DIUBAH: Menggunakan storage/ tanpa back/
                                 $recentImg = asset('storage/' . $fName);
                             }
                         }

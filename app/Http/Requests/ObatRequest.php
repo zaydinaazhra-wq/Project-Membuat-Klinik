@@ -15,7 +15,7 @@ class ObatRequest extends FormRequest
     {
         return [
             'nama_obat'  => 'required',
-            'kategori'   => 'required|in:Tablet,Sirup', // DITAMBAHKAN
+            'kategori'   => 'required|in:Tablet,Sirup', 
             'foto'       => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'harga'      => 'required|numeric',
             'stok'       => 'required|integer',

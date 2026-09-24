@@ -72,7 +72,6 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
-            {{-- Preview Foto Lama --}}
             @if($tenagaMedis->foto)
                 <div class="mt-2">
                     <small class="text-muted d-block mb-1">Foto Saat Ini:</small>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ObatRequest;
-use App\Http\Requests\UpdateObatRequest; // Jika menggunakan Request khusus update
+use App\Http\Requests\UpdateObatRequest;
 use App\Models\Obat;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,7 +34,6 @@ class ObatController extends Controller
     {
         $data = $request->validated();
 
-        // Proses simpan foto jika ada yang diupload
         if ($request->hasFile('foto')) {
             $data['foto'] = $request->file('foto')->store('obats', 'public');
         }
@@ -71,14 +70,11 @@ class ObatController extends Controller
         $obat = Obat::findOrFail($id);
 
         if ($request->hasFile('foto')) {
-            // Hapus foto lama dari storage jika ada
             if ($obat->foto && Storage::disk('public')->exists($obat->foto)) {
                 Storage::disk('public')->delete($obat->foto);
             }
-            // Simpan foto baru
             $data['foto'] = $request->file('foto')->store('obats', 'public');
         } else {
-            // JIKA TIDAK ADA FOTO BARU: Pertahankan foto lama
             $data['foto'] = $obat->foto;
         }
 
@@ -94,7 +90,6 @@ class ObatController extends Controller
     {
         $obat = Obat::findOrFail($id);
 
-        // Hapus foto dari storage saat data dihapus
         if ($obat->foto && Storage::disk('public')->exists($obat->foto)) {
             Storage::disk('public')->delete($obat->foto);
         }

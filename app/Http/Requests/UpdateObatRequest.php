@@ -19,7 +19,7 @@ class UpdateObatRequest extends FormRequest
             'harga'      => 'required|numeric',
             'stok'       => 'required|integer',
             'deskripsis' => 'nullable|string',
-            'foto'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // PENTING: gunakan nullable
+            'foto'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
         ];
     }
 }

@@ -26,7 +26,6 @@
             <input type="text" name="nama_obat" class="form-control" value="{{ old('nama_obat', $obat->nama_obat) }}" required>
         </div>
 
-        <!-- Input Kategori Obat -->
         <div class="mb-3">
             <label class="form-label">Kategori Obat</label>
             <select name="kategori" class="form-select @error('kategori') is-invalid @enderror" required>
@@ -53,7 +52,6 @@
             <textarea name="deskripsis" id="myeditor" class="form-control" rows="3">{{ old('deskripsis', $obat->deskripsis) }}</textarea>
         </div>
 
-        <!-- Input Upload Foto & Preview -->
         <div class="mb-3">
             <label for="foto" class="form-label">Foto Obat</label>
             <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*" onchange="previewImage(event)">

@@ -22,6 +22,13 @@
             background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
         }
 
+        /* Hero Background dengan Gambar Tim Medis & Gradient Overlay */
+        .hero-tenaga-medis {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(13, 110, 253, 0.75) 100%),
+                url('{{ asset("image/tim-medis.png") }}') center/cover no-repeat;
+            position: relative;
+        }
+
         .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -38,7 +45,6 @@
             border: 4px solid #fff;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
-
     </style>
 </head>
 
@@ -108,8 +114,9 @@
         </div>
     </nav>
 
-    <section class="bg-gradient-primary text-white py-5 text-center">
-        <div class="container py-3">
+    <!-- Section Header dengan Foto Background -->
+    <section class="hero-tenaga-medis text-white py-5 text-center">
+        <div class="container py-4">
             <span class="badge bg-white text-primary rounded-pill px-3 py-2 fw-semibold mb-2 shadow-sm">TIM
                 PROFESIONAL</span>
             <h1 class="fw-bold display-5 mb-2"><i class="bi bi-person-badge me-2"></i>Tenaga Medis Kami</h1>
@@ -162,7 +169,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

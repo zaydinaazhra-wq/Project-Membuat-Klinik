@@ -12,7 +12,6 @@ class KategoriObatSeeder extends Seeder
      */
     public function run(): void
     {
-        // Update kategori default untuk data obat yang sudah ada
         Obat::whereNull('kategori')->orWhere('kategori', '')->update([
             'kategori' => 'Tablet'
         ]);

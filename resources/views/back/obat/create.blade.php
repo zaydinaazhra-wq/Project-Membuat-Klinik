@@ -35,7 +35,6 @@
             <input type="text" name="nama_obat" value="{{ old('nama_obat') }}" class="form-control" required>
         </div>
 
-        <!-- DITAMBAHKAN: Input Kategori Obat -->
         <div class="mb-3">
             <label class="form-label">Kategori Obat</label>
             <select name="kategori" class="form-select @error('kategori') is-invalid @enderror" required>
@@ -67,7 +66,6 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
-            <!-- Tempat menampilkan foto preview -->
             <div class="mt-2">
                 <img id="preview-foto" src="#" alt="Preview Foto" class="img-thumbnail d-none" style="max-height: 150px;">
             </div>

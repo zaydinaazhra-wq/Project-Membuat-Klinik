@@ -8,14 +8,12 @@ use App\Models\Reservasi;
 
 class ReservasiController extends Controller
 {
-    // Menampilkan daftar reservasi pasien untuk admin
     public function index()
     {
         $reservasis = Reservasi::orderBy('created_at', 'desc')->get();
         return view('back.reservasi.index', compact('reservasis'));
     }
 
-    // Mengubah status reservasi (menunggu / selesai / batal)
     public function updateStatus(Request $request, $id)
     {
         $request->validate([

@@ -2,7 +2,6 @@
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
 
-            {{-- Menu untuk Semua Role (Admin & Penulis) --}}
             <li class="nav-item">
                 <a href="{{ url('/dashboard') }}" class="nav-link">
                     <i class="fa-solid fa-chart-line"></i> Dashboard
@@ -15,7 +14,6 @@
                 </a>
             </li>
 
-            {{-- Menu Khusus Admin --}}
             @if(auth()->check() && auth()->user()->role === 'admin')
                 <li class="nav-item">
                     <a href="{{ url('/tenaga-medis') }}" class="nav-link">
@@ -35,7 +33,6 @@
                             <i class="fa-solid fa-envelope"></i> Reservasi
                         </div>
 
-                        {{-- Notifikasi Badge ala WhatsApp --}}
                         @if(isset($pendingReservasiCount) && $pendingReservasiCount > 0)
                             <span class="badge bg-danger rounded-pill px-2 py-1" style="font-size: 0.75rem;">
                                 {{ $pendingReservasiCount > 99 ? '99+' : $pendingReservasiCount }}
@@ -51,7 +48,6 @@
                 </li>
             @endif
 
-            {{-- Menu Logout --}}
             <li class="nav-item">
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf

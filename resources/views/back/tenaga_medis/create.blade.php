@@ -59,7 +59,6 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
-            <!-- Tempat preview gambar muncul -->
             <div class="mt-3">
                 <img id="img-preview" src="#" alt="Preview Foto" class="img-thumbnail d-none" width="150">
             </div>

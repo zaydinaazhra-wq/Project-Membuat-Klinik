@@ -30,12 +30,10 @@ class TransaksiController extends Controller
 
     public function create()
     {
-        // Hanya tampilkan obat yang masih memiliki stok untuk opsi transaksi baru
         $obats = Obat::where('stok', '>', 0)->get();
         return view('back.transaksi.create', compact('obats'));
     }
 
-    // === METHOD STORE (ADMIN) ===
     public function store(Request $request)
     {
         $request->validate([
@@ -72,11 +70,9 @@ class TransaksiController extends Controller
         return redirect()->route('back.transaksi.index')->with('success', 'Transaksi berhasil disimpan dan stok obat telah berkurang!');
     }
 
-    // === METHOD STORE PUBLIC (ONLINE) ===
     public function storePublic(Request $request)
     {
         DB::transaction(function () use ($request, &$transaksi) {
-            // 1. Simpan data transaksi utama
             $transaksi = Transaksi::create([
                 'nama_pasien'          => $request->nama,
                 'nik_pasien'           => $request->nik,
@@ -89,7 +85,6 @@ class TransaksiController extends Controller
                 'diagnosis'            => $request->diagnosis ?? 'Pendaftaran Online Web',
             ]);
 
-            // 2. Simpan obat ke pivot table & kurangi stok
             if ($request->has('obats') && is_array($request->obats)) {
                 foreach ($request->obats as $item) {
                     if (!empty($item['nama_obat'])) {
@@ -130,7 +125,6 @@ class TransaksiController extends Controller
         return view('back.transaksi.edit', compact('transaksis', 'obats'));
     }
 
-    // === METHOD UPDATE ===
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -150,13 +144,11 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::with('obats')->findOrFail($id);
 
         DB::transaction(function () use ($request, $transaksi) {
-            // 1. Kembalikan stok obat lama sebelum mereset resep
             foreach ($transaksi->obats as $obatLama) {
                 $qtyLama = $obatLama->pivot->qty ?? 1;
                 $obatLama->increment('stok', $qtyLama);
             }
 
-            // 2. Update data transaksi utama
             $transaksi->update([
                 'nama_pasien'          => $request->nama_pasien,
                 'nik_pasien'           => $request->nik_pasien,
@@ -168,10 +160,8 @@ class TransaksiController extends Controller
                 'catatan'              => $request->catatan,
             ]);
 
-            // 3. Reset relasi pivot
             $transaksi->obats()->detach();
 
-            // 4. Pasang obat baru & kurangi stok lagi
             $totalBayar = $this->attachObatsAndCalculate($transaksi, $request);
             $transaksi->update(['total_bayar' => $totalBayar]);
         });
@@ -179,13 +169,11 @@ class TransaksiController extends Controller
         return redirect()->route('back.transaksi.index')->with('success', 'Data transaksi & stok obat berhasil diperbarui!');
     }
 
-    // === METHOD DESTROY ===
     public function destroy($id)
     {
         $transaksi = Transaksi::with('obats')->findOrFail($id);
 
         DB::transaction(function () use ($transaksi) {
-            // Kembalikan stok obat saat transaksi dihapus
             foreach ($transaksi->obats as $obat) {
                 $qty = $obat->pivot->qty ?? 1;
                 $obat->increment('stok', $qty);
@@ -223,7 +211,6 @@ class TransaksiController extends Controller
                             'harga' => $harga,
                         ]);
 
-                        // POTONG STOK OBAT SESUAI QTY
                         $obat->decrement('stok', $qty);
 
                         if ($request->kategori_pembayaran === 'UMUM') {

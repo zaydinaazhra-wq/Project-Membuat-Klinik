@@ -48,7 +48,7 @@
         /* Hero Styling dengan subtle zoom animation */
         .hero-section-bg {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(13, 110, 253, 0.78) 100%),
-                url('/image/tim-medis.jfif') center/cover no-repeat;
+                url('/image/klinik.png') center/cover no-repeat;
             position: relative;
             animation: zoomHero 20s infinite alternate ease-in-out;
         }
@@ -370,11 +370,6 @@
                     <p class="text-white-50 small mb-3 pe-lg-3 lh-base">
                         Platform Sistem Informasi Manajemen Klinik Terpadu untuk kemudahan pelayanan kesehatan modern, profesional, dan terpercaya.
                     </p>
-                    <div class="d-flex gap-2">
-                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;"><i class="bi bi-whatsapp"></i></a>
-                    </div>
                 </div>
 
                 <!-- Navigasi Cepat -->
@@ -394,8 +389,12 @@
                     <div class="bg-secondary bg-opacity-10 p-3 rounded-3 border border-secondary border-opacity-25">
                         <ul class="list-unstyled text-white-50 small mb-0 d-flex flex-column gap-2">
                             <li class="d-flex justify-content-between align-items-center">
-                                <span><i class="bi bi-clock text-primary me-2"></i>Senin - Sabtu</span>
-                                <span class="badge bg-primary-subtle text-primary fw-medium">08:00 - 20:00</span>
+                                <span><i class="bi bi-clock text-primary me-2"></i>Senin - Jum'at</span>
+                                <span class="badge bg-primary-subtle text-primary fw-medium">07:30 - 21:00</span>
+                            </li>
+                            <li class="d-flex justify-content-between align-items-center">
+                                <span><i class="bi bi-clock text-primary me-2"></i>Sabtu</span>
+                                <span class="badge bg-primary-subtle text-primary fw-medium">07:30 - 17:30</span>
                             </li>
                             <hr class="my-1 border-secondary opacity-25">
                             <li class="d-flex justify-content-between align-items-center">

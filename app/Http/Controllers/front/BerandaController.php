@@ -11,9 +11,7 @@ use Illuminate\View\View;
 
 class BerandaController extends Controller
 {
-    /**
-     * Menampilkan halaman utama (Beranda).
-     */
+
     public function index(): View
     {
 
@@ -28,14 +26,12 @@ class BerandaController extends Controller
         return view('front.beranda', compact('articles', 'tenagaMedis', 'obats'));
     }
 
-    /**
-     * Menampilkan halaman daftar semua obat dengan fitur pencarian dan paginasi.
-     */
+
     public function semuaObat(Request $request): View
     {
         $search = $request->input('search');
 
-        $obats = Obat::where('stok', '>', 0) // Hanya tampilkan obat yang stoknya lebih dari 0
+        $obats = Obat::where('stok', '>', 0)
             ->when($search, fn($query, $search) => $query->where('nama_obat', 'like', "%{$search}%"))
             ->latest()
             ->paginate(10)
@@ -44,9 +40,7 @@ class BerandaController extends Controller
         return view('front.daftar-obat', compact('obats', 'search'));
     }
 
-    /**
-     * Menampilkan detail artikel beserta artikel terbaru lainnya.
-     */
+    
     public function detailArtikel(string $slug): View
     {
         $article = Article::where('slug', $slug)->firstOrFail();

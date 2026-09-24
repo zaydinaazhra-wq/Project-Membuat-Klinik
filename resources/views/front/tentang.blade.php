@@ -239,7 +239,7 @@
                                     <h6 class="mb-0 fw-semibold">Senin - Jumat</h6>
                                     <small class="opacity-75">Sesi Pagi & Sore</small>
                                 </div>
-                                <span class="badge bg-white text-primary font-monospace fs-6">08:00 - 20:00 WIB</span>
+                                <span class="badge bg-white text-primary font-monospace fs-6">07:30 - 21:00 WIB</span>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center p-3 rounded-3 glass-card">
@@ -247,7 +247,7 @@
                                     <h6 class="mb-0 fw-semibold">Sabtu</h6>
                                     <small class="opacity-75">Sesi Akhir Pekan</small>
                                 </div>
-                                <span class="badge bg-white text-primary font-monospace fs-6">08:00 - 17:00 WIB</span>
+                                <span class="badge bg-white text-primary font-monospace fs-6">07:30 - 17:30 WIB</span>
                             </div>
 
                             <div
