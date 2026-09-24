@@ -20,6 +20,13 @@
             color: #334155;
         }
 
+        /* Custom Hero Background dengan Gambar dan Overlay Biru (seperti di Beranda) */
+        .hero-section-bg {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(13, 110, 253, 0.78) 100%),
+                        url('{{ asset("image/tentang.jpeg") }}') center/cover no-repeat;
+            position: relative;
+        }
+
         /* Custom Gradient Backgrounds */
         .bg-gradient-primary {
             background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 50%, #032830 100%);
@@ -90,13 +97,12 @@
                 box-shadow: 0 0 0 0 rgba(25, 135, 84, 0);
             }
         }
-
     </style>
 </head>
 
 <body>
 
-    <!--  Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3 custom-navbar"
         style="background-color: rgba(13, 110, 253, 0.95); backdrop-filter: blur(10px);">
         <div class="container">
@@ -161,9 +167,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-primary text-white py-5 position-relative overflow-hidden">
-        <div class="container py-4 position-relative z-1 text-center">
+    <!-- Hero Section dengan Gambar Latar Belakang -->
+    <section class="hero-section-bg text-white py-5 position-relative overflow-hidden">
+        <div class="container py-5 position-relative z-1 text-center">
             <span class="badge bg-white text-primary rounded-pill px-3 py-2 fw-semibold mb-3 shadow-sm">
                 <i class="bi bi-stars text-warning me-1"></i> Layanan Kesehatan Modern & Terpercaya
             </span>
@@ -224,8 +230,7 @@
                         class="card border-0 shadow-sm rounded-4 p-4 p-md-5 h-100 bg-gradient-primary text-white hover-lift">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h4 class="fw-bold mb-0"><i class="bi bi-clock me-2"></i>Jam Operasional</h4>
-                            <span class="badge bg-success text-white px-3 py-2 rounded-pill pulse-badge">Buka Hari
-                                Ini</span>
+                            <span class="badge bg-success text-white px-3 py-2 rounded-pill pulse-badge">Buka Hari Ini</span>
                         </div>
 
                         <div class="d-flex flex-column gap-3 mb-4">
@@ -256,8 +261,7 @@
                         </div>
 
                         <div class="mt-auto pt-3 border-top border-white border-opacity-10">
-                            <small class="opacity-75 d-block mb-1"><i class="bi bi-telephone-inbound me-1"></i> Butuh
-                                Konsultasi Cepat?</small>
+                            <small class="opacity-75 d-block mb-1"><i class="bi bi-telephone-inbound me-1"></i> Butuh Konsultasi Cepat?</small>
                             <a href="https://wa.me/6283170325118" target="_blank"
                                 class="btn btn-success text-white fw-bold rounded-pill w-100 py-2 shadow-sm">
                                 <i class="bi bi-whatsapp me-2"></i>+62 831-7032-5118
@@ -296,8 +300,7 @@
                         </div>
                         <ul class="text-secondary mb-0 ps-3">
                             <li class="mb-2">Menyediakan tenaga medis yang profesional, kompeten, dan empati.</li>
-                            <li class="mb-2">Mengembangkan pendaftaran & manajemen rekam medis yang cepat tanpa kendala.
-                            </li>
+                            <li class="mb-2">Mengembangkan pendaftaran & manajemen rekam medis yang cepat tanpa kendala.</li>
                             <li>Menjamin ketersediaan obat-obatan esensial yang asli, aman, dan terjangkau.</li>
                         </ul>
                     </div>
@@ -310,7 +313,7 @@
                     <div class="row g-0">
                         <div class="col-lg-5 p-4 p-md-5 d-flex flex-column justify-content-center">
                             <span
-                                class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3 py-2 fw-semibold mb-3 style-fit"
+                                class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3 py-2 fw-semibold mb-3"
                                 style="width: fit-content;">
                                 <i class="bi bi-geo-alt-fill me-1"></i> Lokasi & Hubungi Kami
                             </span>
@@ -390,9 +393,7 @@
     </footer>
 
     <!-- Bootstrap JS -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

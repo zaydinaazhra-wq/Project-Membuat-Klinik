@@ -232,19 +232,9 @@
                 </div>
             </div>
 
-            <!-- Footer Paginasi (Format Sesuai Screenshot 2) -->
+            <!-- Footer Paginasi -->
             <div class="card-footer bg-white border-0 py-3">
-                <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
-                    @if(method_exists($obats, 'total'))
-                    <div class="text-muted small">
-                        Showing <span class="fw-semibold text-dark">{{ $obats->firstItem() ?? 0 }}</span> to <span class="fw-semibold text-dark">{{ $obats->lastItem() ?? 0 }}</span> of <span class="fw-semibold text-dark">{{ $obats->total() }}</span> entries
-                    </div>
-                    @else
-                    <div class="text-muted small">
-                        Showing 1 to 10 of 23 entries
-                    </div>
-                    @endif
-
+                <div class="d-flex justify-content-end">
                     <!-- Laravel Links / Custom Pagination Links -->
                     <div>
                         @if(method_exists($obats, 'links'))

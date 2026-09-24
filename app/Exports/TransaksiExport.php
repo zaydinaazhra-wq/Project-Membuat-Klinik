@@ -64,7 +64,7 @@ class TransaksiExport implements FromCollection, WithHeadings, WithMapping, Shou
 
         return [
             $no,
-            $transaksi->created_at ? $transaksi->created_at->format('d-M-Y') : '-',
+            $transaksi->created_at ? $transaksi->created_at->format('d M Y') : '-',
             $transaksi->nama_pasien ?? '-',
             $transaksi->nik_pasien ? "'" . $transaksi->nik_pasien : '-',
             $transaksi->no_wa_pasien ? "'" . $transaksi->no_wa_pasien : '-',
@@ -82,9 +82,9 @@ class TransaksiExport implements FromCollection, WithHeadings, WithMapping, Shou
                 $sheet = $event->sheet->getDelegate();
 
                 // Format Tanggal Judul (contoh: 22-09-2026 s.d 23-09-2026)
-                $tglAwalFormatted = Carbon::parse($this->tglAwal)->format('d-M-Y');
-                $tglAkhirFormatted = Carbon::parse($this->tglAkhir)->format('d-M-Y');
-                $judul = "REKAP TRANSAKSI TANGGAL(" . $tglAwalFormatted . " s.d " . $tglAkhirFormatted . ")";
+                $tglAwalFormatted = Carbon::parse($this->tglAwal)->format('d M Y');
+                $tglAkhirFormatted = Carbon::parse($this->tglAkhir)->format('d M Y');
+                $judul = "REKAP TRANSAKSI TANGGAL(" . $tglAwalFormatted . " Sampai " . $tglAkhirFormatted . ")";
 
                 // 1. Tulis Judul di Baris 1 & 2
                 $sheet->mergeCells("A1:I2");

@@ -63,12 +63,6 @@
                                         <button type="submit" name="status" value="batal" class="btn btn-sm btn-danger {{ $item->status == 'batal' ? 'disabled' : '' }}" onclick="return confirm('Apakah Anda yakin ingin membatalkan reservasi ini?')" title="Batalkan Reservasi">
                                             <i class="fa-solid fa-xmark me-1"></i>Batal
                                         </button>
-
-                                        @if($item->status != 'menunggu')
-                                            <button type="submit" name="status" value="menunggu" class="btn btn-sm btn-secondary" title="Kembalikan ke Menunggu">
-                                                <i class="fa-solid fa-rotate-left"></i>
-                                            </button>
-                                        @endif
                                     </form>
                                 </td>
                             </tr>

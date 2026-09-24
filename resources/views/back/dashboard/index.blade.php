@@ -228,7 +228,7 @@
                                 <th>Judul Artikel</th>
                                 <th>Kategori</th>
                                 <th class="text-center">Dilihat</th>
-                                <th class="text-center">Aksi</th>
+                                {{-- <th class="text-center">Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -251,12 +251,12 @@
                                     <span class="badge bg-light text-dark border px-2 py-1"><i
                                             class="fa-regular fa-eye me-1 text-muted"></i>{{ $item->views }}</span>
                                 </td>
-                                <td class="text-center">
+                                {{-- <td class="text-center">
                                     <a href="{{ url('article/' . $item->id) }}"
                                         class="btn btn-sm btn-outline-primary rounded-pill px-3">
                                         Rincian
                                     </a>
-                                </td>
+                                </td> --}}
                             </tr>
                             @empty
                             <tr>
