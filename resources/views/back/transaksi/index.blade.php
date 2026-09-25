@@ -31,8 +31,8 @@
         </div>
         @endif
 
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered align-middle" id="dataTable">
+        {{-- <div class="table-responsive"> --}}
+            <table class="table table-striped table-bordered" id="dataTable">
                 <thead>
                     <tr>
                         <th class="text-center" style="width: 50px;">No</th>
@@ -72,7 +72,7 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        {{-- </div> --}}
     </div>
 </main>
 

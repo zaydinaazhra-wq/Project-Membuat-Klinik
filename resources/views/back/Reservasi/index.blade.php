@@ -13,16 +13,16 @@
         </div>
     @endif
 
-    <div class="card border-0 shadow-sm rounded-3">
-        <div class="card-body p-3">
-            <div class="table-responsive">
-                <table class="table table-bordered align-middle mb-0" id="dataTable">
+    {{-- <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-3"> --}}
+            {{-- <div class="table-responsive"> --}}
+                <table class="table table-striped table-bordered" id="dataTable">
                     <thead class="table-light">
                         <tr>
                             <th class="text-center" style="width: 5%">No</th>
                             <th>Nama Pasien</th>
                             <th>Kontak / WA</th>
-                            <th>Tanggal Kunjungan</th>
+                            <th>Waktu Kunjungan</th>
                             <th>Keluhan</th>
                             <th class="text-center">Status</th>
                             <th class="text-center" style="width: 20%">Aksi</th>
@@ -38,7 +38,17 @@
                                         <i class="fa-brands fa-whatsapp me-1"></i>{{ $item->kontak }}
                                     </a>
                                 </td>
-                                <td>{{ date('d M Y', strtotime($item->hari)) }}</td>
+
+                                <!-- TANGGAL DAN JAM DIGABUNG DI SINI -->
+                                <td>
+                                    <div>{{ date('d M Y', strtotime($item->hari)) }}</div>
+                                    @if(!empty($item->jam))
+                                        <small class="badge bg-light text-dark border mt-1">
+                                            <i class="fa-regular fa-clock me-1 text-primary"></i>{{ date('H:i', strtotime($item->jam)) }} WIB
+                                        </small>
+                                    @endif
+                                </td>
+
                                 <td>{{ $item->keluhan }}</td>
                                 <td class="text-center">
                                     @if($item->status == 'menunggu')
@@ -71,9 +81,9 @@
                         @endforelse
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
+            {{-- </div> --}}
+        {{-- </div>
+    </div> --}}
 </main>
 @endsection
 
@@ -84,6 +94,5 @@
 
 <script>
     new DataTable('#dataTable');
-
 </script>
 @endpush

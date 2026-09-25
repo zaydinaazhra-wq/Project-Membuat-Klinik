@@ -14,6 +14,7 @@ class Reservasi extends Model
         'alamat',
         'kontak',
         'hari',
+        'jam',
         'keluhan',
         'status',
     ];

@@ -39,9 +39,15 @@
                         </div>
 
                         <!-- Hari / Tanggal -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Hari / Tanggal Kunjungan *</label>
-                            <input type="date" name="hari" class="form-control" value="{{ old('hari') }}" required>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Tanggal Kunjungan *</label>
+                                <input type="date" name="hari" class="form-control" value="{{ old('hari') }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Jam Kunjungan *</label>
+                                <input type="time" name="jam" class="form-control" value="{{ old('jam') }}" required>
+                            </div>
                         </div>
 
                         <!-- Keluhan -->

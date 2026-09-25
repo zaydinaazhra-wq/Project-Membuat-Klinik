@@ -40,13 +40,14 @@ class BerandaController extends Controller
         return view('front.daftar-obat', compact('obats', 'search'));
     }
 
-    
+
     public function detailArtikel(string $slug): View
     {
         $article = Article::where('slug', $slug)->firstOrFail();
         $article->increment('views');
 
-        $recentArticles = Article::where('id', '!=', $article->id)
+        $recentArticles = Article::where('status', '1')
+            ->where('id', '!=', $article->id)
             ->latest()
             ->take(5)
             ->get();

@@ -116,7 +116,7 @@
                             {{ \Carbon\Carbon::now()->isoFormat('D MMMM YYYY') }}
                         </span>
                         <h2 class="fw-bold mb-1">Panel Utama Klinik</h2>
-                        <p class="mb-0 text-white-50">Pantau perkembangan artikel, tenaga medis, Transaksi, dan obat dalam
+                        <p class="mb-0 text-white-50">Pantau perkembangan artikel, tenaga medis, transaksi, dan obat dalam
                             satu tempat.</p>
                     </div>
                     <div>

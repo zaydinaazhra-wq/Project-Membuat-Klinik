@@ -139,34 +139,37 @@
 
                     <div class="d-flex flex-column gap-3">
                         @forelse($recentArticles as $recent)
-                        @php
-                        $recentImg = 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=200&q=80';
+                            {{-- Hanya tampilkan jika statusnya 'Published' --}}
+                            @if(strtolower($recent->status) === '1')
+                                @php
+                                $recentImg = 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=200&q=80';
 
-                        if (!empty($recent->img)) {
-                            if (str_starts_with($recent->img, 'http')) {
-                                $recentImg = $recent->img;
-                            } else {
-                                $fName = str_replace(['public/', 'storage/', 'back/'], '', $recent->img);
-                                $fName = ltrim($fName, '/');
-                                $recentImg = asset('storage/' . $fName);
-                            }
-                        }
-                        @endphp
-                        <div class="d-flex align-items-center gap-3">
-                            <img src="{{ $recentImg }}" class="sidebar-post-img" alt="Thumbnail">
-                            <div>
-                                <a href="/baca-artikel/{{ $recent->slug ?? $recent->id }}"
-                                    class="text-dark fw-semibold text-decoration-none small d-block mb-1 text-truncate"
-                                    style="max-width: 190px;">
-                                    {{ $recent->title }}
-                                </a>
-                                <span class="text-muted" style="font-size: 0.75rem;">
-                                    <i class="bi bi-calendar3 me-1"></i>{{ $recent->created_at ? $recent->created_at->format('d M Y') : '-' }}
-                                </span>
-                            </div>
-                        </div>
+                                if (!empty($recent->img)) {
+                                    if (str_starts_with($recent->img, 'http')) {
+                                        $recentImg = $recent->img;
+                                    } else {
+                                        $fName = str_replace(['public/', 'storage/', 'back/'], '', $recent->img);
+                                        $fName = ltrim($fName, '/');
+                                        $recentImg = asset('storage/' . $fName);
+                                    }
+                                }
+                                @endphp
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="{{ $recentImg }}" class="sidebar-post-img" alt="Thumbnail">
+                                    <div>
+                                        <a href="/baca-artikel/{{ $recent->slug ?? $recent->id }}"
+                                            class="text-dark fw-semibold text-decoration-none small d-block mb-1 text-truncate"
+                                            style="max-width: 190px;">
+                                            {{ $recent->title }}
+                                        </a>
+                                        <span class="text-muted" style="font-size: 0.75rem;">
+                                            <i class="bi bi-calendar3 me-1"></i>{{ $recent->created_at ? $recent->created_at->format('d M Y') : '-' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
                         @empty
-                        <p class="text-muted small m-0">Tidak ada artikel lain.</p>
+                            <p class="text-muted small m-0">Tidak ada artikel lain.</p>
                         @endforelse
                     </div>
                 </div>

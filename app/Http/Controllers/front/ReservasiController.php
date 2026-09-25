@@ -21,6 +21,7 @@ class ReservasiController extends Controller
             'kontak'  => 'required|string|max:20',
             'alamat'  => 'required|string',
             'hari'    => 'required|date',
+            'jam'     => 'required',
             'keluhan' => 'required|string',
         ]);
 
@@ -29,6 +30,7 @@ class ReservasiController extends Controller
             'kontak'  => $request->kontak,
             'alamat'  => $request->alamat,
             'hari'    => $request->hari,
+            'jam'     => $request->jam,
             'keluhan' => $request->keluhan,
             'status'  => 'menunggu',
         ]);
@@ -41,6 +43,7 @@ class ReservasiController extends Controller
         $pesan .= "*No. WhatsApp:* " . $request->kontak . "\n";
         $pesan .= "*Alamat:* " . $request->alamat . "\n";
         $pesan .= "*Tanggal Kunjungan:* " . date('d-m-Y', strtotime($request->hari)) . "\n";
+        $pesan .= "*Jam Kunjungan:* " . date('H:i', strtotime($request->jam)) . " WIB\n";
         $pesan .= "*Keluhan:* " . $request->keluhan . "\n\n";
         $pesan .= "Mohon konfirmasi jadwal reservasi saya. Terima kasih!";
 

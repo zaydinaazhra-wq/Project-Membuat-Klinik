@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('alamat');
             $table->string('kontak');
             $table->date('hari');
+            $table->time('jam');
             $table->text('keluhan');
             $table->enum('status', ['menunggu', 'selesai', 'batal'])->default('menunggu');
             $table->timestamps();
