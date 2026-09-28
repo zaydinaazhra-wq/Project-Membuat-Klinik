@@ -61,7 +61,6 @@ Route::middleware(['auth'])->name('back.')->group(function () {
     Route::resource('/users', UserController::class);
 });
 
-// File Manager & Auth
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });

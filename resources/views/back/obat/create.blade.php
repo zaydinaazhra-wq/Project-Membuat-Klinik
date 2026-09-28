@@ -8,12 +8,13 @@
 
 <body class="container py-4">
     <h2>Tambah Data Obat</h2>
+
     @if ($errors->any())
         <div class="my-3">
             <div class="alert alert-danger">
-                <ul>
+                <ul class="mb-0">
                     @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                        <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -28,48 +29,47 @@
         </div>
     @endif
 
-    <form action="{{ route('back.obat.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('back.obat.store') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
+
         <div class="mb-3">
             <label class="form-label">Nama Obat</label>
-            <input type="text" name="nama_obat" value="{{ old('nama_obat') }}" class="form-control" required>
+            <input type="text" name="nama_obat" value="{{ old('nama_obat') }}" class="form-control">
         </div>
 
         <div class="mb-3">
             <label class="form-label">Kategori Obat</label>
-            <select name="kategori" class="form-select @error('kategori') is-invalid @enderror" required>
+            <select name="kategori" class="form-select">
                 <option value="">-- Pilih Kategori --</option>
                 <option value="Tablet" {{ old('kategori') == 'Tablet' ? 'selected' : '' }}>Tablet</option>
                 <option value="Sirup" {{ old('kategori') == 'Sirup' ? 'selected' : '' }}>Sirup</option>
             </select>
-            @error('kategori')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
         </div>
 
         <div class="mb-3">
             <label class="form-label">Harga (Rp)</label>
-            <input type="number" name="harga" value="{{ old('harga') }}" class="form-control" required>
+            <input type="number" name="harga" value="{{ old('harga') }}" class="form-control">
         </div>
+
         <div class="mb-3">
             <label class="form-label">Stok</label>
-            <input type="number" name="stok" value="{{ old('stok') }}" class="form-control" required>
+            <input type="number" name="stok" value="{{ old('stok') }}" class="form-control">
         </div>
+
         <div class="mb-3">
             <label class="form-label">Deskripsi / Kegunaan</label>
-            <textarea name="deskripsis" id="myeditor" class="form-control" rows="3">{{ old('deskripsis') }}</textarea>
+            <textarea name="deskripsis" id="myeditor" class="form-control" rows="3">{{ old('deskripsi') }}</textarea>
         </div>
+
         <div class="mb-3">
             <label for="foto" class="form-label">Foto Obat</label>
-            <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*" onchange="previewImage(event)">
-            @error('foto')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+            <input type="file" name="foto" id="foto" class="form-control" accept="image/*" onchange="previewImage(event)">
 
             <div class="mt-2">
                 <img id="preview-foto" src="#" alt="Preview Foto" class="img-thumbnail d-none" style="max-height: 150px;">
             </div>
         </div>
+
         <button type="submit" class="btn btn-primary">Simpan</button>
         <a href="{{ route('back.obat.index') }}" class="btn btn-secondary">Kembali</a>
     </form>
@@ -92,9 +92,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-    </script>
 
-    <script>
         var options = {
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
             filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Image&_token=',
@@ -102,11 +100,13 @@
             filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
             clipboard_handleImages: false
         }
-    </script>
-    <script>
+
         document.addEventListener("DOMContentLoaded", function() {
-            CKEDITOR.replace('myeditor', options);
+            if (document.getElementById('myeditor')) {
+                CKEDITOR.replace('myeditor', options);
+            }
         });
     </script>
 </body>
+
 </html>

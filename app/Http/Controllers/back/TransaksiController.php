@@ -50,7 +50,7 @@ class TransaksiController extends Controller
             'obats.*.qty'          => 'nullable|numeric|min:1',
         ]);
 
-        DB::transaction(function () use ($request, &$transaksi) {
+        DB::transaction(function () use ($request) {
             $transaksi = Transaksi::create([
                 'nama_pasien'          => $request->nama_pasien,
                 'nik_pasien'           => $request->nik_pasien,
@@ -72,7 +72,9 @@ class TransaksiController extends Controller
 
     public function storePublic(Request $request)
     {
-        DB::transaction(function () use ($request, &$transaksi) {
+        $transaksiId = null;
+
+        DB::transaction(function () use ($request, &$transaksiId) {
             $transaksi = Transaksi::create([
                 'nama_pasien'          => $request->nama,
                 'nik_pasien'           => $request->nik,
@@ -84,6 +86,8 @@ class TransaksiController extends Controller
                 'catatan'              => $request->catatan,
                 'diagnosis'            => $request->diagnosis ?? 'Pendaftaran Online Web',
             ]);
+
+            $transaksiId = $transaksi->id;
 
             if ($request->has('obats') && is_array($request->obats)) {
                 foreach ($request->obats as $item) {
@@ -107,7 +111,7 @@ class TransaksiController extends Controller
         return response()->json([
             'status'       => 'success',
             'message'      => 'Data transaksi berhasil disimpan!',
-            'transaksi_id' => $transaksi->id
+            'transaksi_id' => $transaksiId
         ]);
     }
 

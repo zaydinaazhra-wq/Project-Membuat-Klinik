@@ -2,87 +2,94 @@
 
 @section('content')
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2 fw-bold text-dark"><i class="fa-solid fa-calendar-check me-2"></i>Reservasi Pasien</h1>
     </div>
 
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
-            <i class="fa-solid fa-circle-check me-2"></i>{{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+        <i class="fa-solid fa-circle-check me-2"></i>{{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
 
     {{-- <div class="card border-0 shadow-sm rounded-3">
         <div class="card-body p-3"> --}}
-            {{-- <div class="table-responsive"> --}}
-                <table class="table table-striped table-bordered" id="dataTable">
-                    <thead class="table-light">
-                        <tr>
-                            <th class="text-center" style="width: 5%">No</th>
-                            <th>Nama Pasien</th>
-                            <th>Kontak / WA</th>
-                            <th>Waktu Kunjungan</th>
-                            <th>Keluhan</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center" style="width: 20%">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($reservasis as $index => $item)
-                            <tr>
-                                <td class="text-center">{{ $index + 1 }}</td>
-                                <td class="fw-semibold">{{ $item->nama }}</td>
-                                <td>
-                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $item->kontak) }}" target="_blank" class="text-decoration-none text-success fw-medium">
-                                        <i class="fa-brands fa-whatsapp me-1"></i>{{ $item->kontak }}
-                                    </a>
-                                </td>
+    {{-- <div class="table-responsive"> --}}
+    <table class="table table-striped table-bordered" id="dataTable">
+        <thead class="table-light">
+            <tr>
+                <th class="text-center" style="width: 5%">No</th>
+                <th>Nama Pasien</th>
+                <th>Kontak / WA</th>
+                <th>Waktu Kunjungan</th>
+                <th>Keluhan</th>
+                <th class="text-center">Status</th>
+                <th class="text-center" style="width: 20%">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($reservasis as $index => $item)
+            <tr>
+                <td class="text-center">{{ $index + 1 }}</td>
+                <td class="fw-semibold">{{ $item->nama }}</td>
+                <td>
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $item->kontak) }}" target="_blank"
+                        class="text-decoration-none text-success fw-medium">
+                        <i class="fa-brands fa-whatsapp me-1"></i>{{ $item->kontak }}
+                    </a>
+                </td>
 
-                                <!-- TANGGAL DAN JAM DIGABUNG DI SINI -->
-                                <td>
-                                    <div>{{ date('d M Y', strtotime($item->hari)) }}</div>
-                                    @if(!empty($item->jam))
-                                        <small class="badge bg-light text-dark border mt-1">
-                                            <i class="fa-regular fa-clock me-1 text-primary"></i>{{ date('H:i', strtotime($item->jam)) }} WIB
-                                        </small>
-                                    @endif
-                                </td>
+                <td>
+                    <div>{{ date('d M Y', strtotime($item->hari)) }}</div>
+                    @if(!empty($item->jam))
+                    <small class="badge bg-light text-dark border mt-1">
+                        <i class="fa-regular fa-clock me-1 text-primary"></i>{{ date('H:i', strtotime($item->jam)) }}
+                        WIB
+                    </small>
+                    @endif
+                </td>
 
-                                <td>{{ $item->keluhan }}</td>
-                                <td class="text-center">
-                                    @if($item->status == 'menunggu')
-                                        <span class="badge bg-warning text-dark px-2 py-1">Menunggu</span>
-                                    @elseif($item->status == 'selesai')
-                                        <span class="badge bg-success px-2 py-1">Selesai</span>
-                                    @else
-                                        <span class="badge bg-danger px-2 py-1">Batal</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <form action="{{ route('back.reservasi.updateStatus', $item->id) }}" method="POST" class="d-flex justify-content-center gap-1">
-                                        @csrf
-                                        @method('PUT')
+                <td>{{ $item->keluhan }}</td>
+                <td class="text-center">
+                    @if($item->status == 'menunggu')
+                    <span class="badge bg-warning text-dark px-2 py-1">Menunggu</span>
+                    @elseif($item->status == 'selesai')
+                    <span class="badge bg-success px-2 py-1">Selesai</span>
+                    @else
+                    <span class="badge bg-danger px-2 py-1">Batal</span>
+                    @endif
+                </td>
+                <td class="text-center">
+                    <form action="{{ route('back.reservasi.updateStatus', $item->id) }}" method="POST"
+                        class="d-flex justify-content-center gap-1">
+                        @csrf
+                        @method('PUT')
 
-                                        <button type="submit" name="status" value="selesai" class="btn btn-sm btn-success {{ $item->status == 'selesai' ? 'disabled' : '' }}" title="Tandai Selesai">
-                                            <i class="fa-solid fa-check me-1"></i>Selesai
-                                        </button>
+                        <button type="submit" name="status" value="selesai" class="btn btn-sm btn-success"
+                            {{ $item->status != 'menunggu' ? 'disabled' : '' }} title="Tandai Selesai">
+                            <i class="fa-solid fa-check me-1"></i>Selesai
+                        </button>
 
-                                        <button type="submit" name="status" value="batal" class="btn btn-sm btn-danger {{ $item->status == 'batal' ? 'disabled' : '' }}" onclick="return confirm('Apakah Anda yakin ingin membatalkan reservasi ini?')" title="Batalkan Reservasi">
-                                            <i class="fa-solid fa-xmark me-1"></i>Batal
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="7" class="text-center py-4 text-muted">Belum ada data reservasi masuk.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            {{-- </div> --}}
-        {{-- </div>
+                        <button type="submit" name="status" value="batal" class="btn btn-sm btn-danger"
+                            {{ $item->status != 'menunggu' ? 'disabled' : '' }}
+                            onclick="return confirm('Apakah Anda yakin ingin membatalkan reservasi ini?')"
+                            title="Batalkan Reservasi">
+                            <i class="fa-solid fa-xmark me-1"></i>Batal
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="7" class="text-center py-4 text-muted">Belum ada data reservasi masuk.</td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+    {{-- </div> --}}
+    {{-- </div>
     </div> --}}
 </main>
 @endsection
@@ -94,5 +101,6 @@
 
 <script>
     new DataTable('#dataTable');
+
 </script>
 @endpush

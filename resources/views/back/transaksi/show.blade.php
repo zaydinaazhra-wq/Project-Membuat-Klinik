@@ -1,14 +1,43 @@
 @extends('back.layout.template')
 
 @section('content')
+
+{{-- Menyusun variabel pesan & format nomor WhatsApp --}}
+@php
+    $noWa =$transaksis->no_wa_pasien;
+    if (!empty($noWa) && str_starts_with($noWa, '0')) {
+        $noWa = '62' . substr($noWa, 1);
+    }
+
+    $pesan = "Halo *" . $transaksis->nama_pasien . "*,\n\n";
+    $pesan .= "Berikut adalah rincian bukti transaksi Anda di *HealthPoint Clinic*:\n";
+    $pesan .= "• *Tanggal:* " . ($transaksis->created_at ? $transaksis->created_at->format('d F Y - H:i') . ' WIB' : '-') . "\n";
+    $pesan .= "• *Pemeriksaan:* " . ($transaksis->kategori_pemeriksaan ?? '-') . "\n";
+    $pesan .= "• *Kategori Pembayaran:* " . $transaksis->kategori_pembayaran . "\n";
+    $pesan .= "• *Total Tagihan:* Rp " . number_format($transaksis->total_bayar, 0, ',', '.') . "\n\n";
+    $pesan .= "📸 *Foto/Gambar Struk Pembayaran terlampir pada pesan ini.*\n\n";
+    $pesan .= "Terima kasih, semoga lekas sembuh! 🙏";
+@endphp
+
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2"><i class="fa-solid fa-circle-info me-2"></i>Detail Transaksi Pasien</h1>
-        <div>
-            <a href="{{ route('back.transaksi.index') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left me-1"></i> Kembali</a>
-            <a href="{{ route('back.transaksi.cetak', $transaksis->id) }}" class="btn btn-success" target="_blank"><i class="fa-solid fa-receipt me-1"></i> Lihat Bukti Pembayaran</a>
+        <h1 class="h2"><i class="fa-solid fa-circle-info me-2 text-primary"></i>Detail Transaksi Pasien</h1>
+        <div class="d-flex gap-2">
+            <a href="{{ route('back.transaksi.index') }}" class="btn btn-secondary btn-sm d-flex align-items-center">
+                <i class="fa-solid fa-arrow-left me-1"></i> Kembali
+            </a>
+
+            <a href="{{ route('back.transaksi.cetak', $transaksis->id) }}" class="btn btn-success btn-sm d-flex align-items-center" target="_blank">
+                <i class="fa-solid fa-receipt me-1"></i> Lihat Bukti Pembayaran
+            </a>
+
+            <button type="button" onclick="kirimStrukKeWA(this, '{{ $noWa }}', '{{ urlencode($pesan) }}', '{{ route('back.transaksi.cetak',$transaksis->id) }}')" class="btn btn-primary btn-sm d-flex align-items-center" style="background-color: #25D366; border-color: #25D366;">
+                <i class="fa-brands fa-whatsapp me-1"></i> Kirim Struk via WA
+            </button>
         </div>
     </div>
+
+    <div id="hidden-receipt-container" style="position: absolute; left: -9999px; top: -9999px;"></div>
 
     <div class="card shadow-sm border-0">
         <div class="card-body">
@@ -95,4 +124,61 @@
         </div>
     </div>
 </main>
+
+{{-- Library HTML2Canvas --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+function kirimStrukKeWA(btn, noHp, pesanTeks, urlCetak) {
+    if (!noHp) {
+        alert('Nomor WhatsApp pasien tidak ditemukan!');
+        return;
+    }
+
+    const originalText = btn.innerHTML;
+
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Memproses...';
+    btn.disabled = true;
+
+    // Ambil tampilan struk dari halaman cetak secara otomatis
+    fetch(urlCetak)
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const receiptBox = doc.querySelector('.receipt-box') || doc.querySelector('.card') || doc.body;
+
+            const container = document.getElementById('hidden-receipt-container');
+            container.innerHTML = '';
+            container.appendChild(receiptBox.cloneNode(true));
+
+            return html2canvas(container.firstElementChild, { scale: 2 });
+        })
+        .then(canvas => {
+            canvas.toBlob(blob => {
+                // Masukkan foto struk ke Clipboard laptop/PC
+                const item = new ClipboardItem({ 'image/png': blob });
+                navigator.clipboard.write([item]).then(() => {
+                    // Kembalikan tombol seperti semula
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+
+                    // Tampilkan Pop-Up Notifikasi
+                    alert("✅ Gambar Struk BERHASIL disalin otomatis!\n\nTab WhatsApp Web akan terbuka. Di kolom chat pasien, tekan CTRL + V lalu Enter.");
+
+                    // Buka WhatsApp Web di Tab Baru
+                    const urlWa = `https://web.whatsapp.com/send?phone=${noHp}&text=${pesanTeks}`;
+                    window.open(urlWa, '_blank');
+                });
+            });
+        })
+        .catch(err => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            console.error(err);
+            alert('Gagal menyalin gambar struk otomatis.');
+        });
+}
+</script>
+
 @endsection

@@ -12,6 +12,8 @@ use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Color;
 use Carbon\Carbon;
 
 class TransaksiExport implements FromCollection, WithHeadings, WithMapping, ShouldAutoSize, WithEvents, WithCustomStartCell
@@ -26,7 +28,6 @@ class TransaksiExport implements FromCollection, WithHeadings, WithMapping, Shou
         $this->tglAkhir = $tglAkhir;
     }
 
-    // Tabel dimulai dari baris ke-4 (Baris 1 & 2 untuk Judul)
     public function startCell(): string
     {
         return 'A4';
@@ -81,22 +82,20 @@ class TransaksiExport implements FromCollection, WithHeadings, WithMapping, Shou
             AfterSheet::class => function(AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
 
-                // Format Tanggal Judul (contoh: 22-09-2026 s.d 23-09-2026)
                 $tglAwalFormatted = Carbon::parse($this->tglAwal)->format('d M Y');
                 $tglAkhirFormatted = Carbon::parse($this->tglAkhir)->format('d M Y');
-                $judul = "REKAP TRANSAKSI TANGGAL(" . $tglAwalFormatted . " Sampai " . $tglAkhirFormatted . ")";
+                $judul = "REKAP TRANSAKSI TANGGAL " . $tglAwalFormatted . " Sampai " . $tglAkhirFormatted;
 
-                // 1. Tulis Judul di Baris 1 & 2
                 $sheet->mergeCells("A1:I2");
                 $sheet->setCellValue("A1", $judul);
                 $sheet->getStyle("A1")->getFont()->setBold(true)->setSize(14);
                 $sheet->getStyle("A1")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
                 $sheet->getStyle("A1")->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
 
-                // 2. Style Header Tabel (Baris 4)
-                $sheet->getStyle("A4:I4")->getFont()->setBold(true);
+                $sheet->getStyle("A4:I4")->getFont()->setBold(true)->setColor(new Color(Color::COLOR_WHITE));
+                $sheet->getStyle("A4:I4")->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB('365F91');
+                $sheet->getStyle("A4:I4")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
-                // 3. Tambahkan Baris Total Pemasukan
                 $highestRow = $sheet->getHighestRow();
                 $totalRow = $highestRow + 1;
 
@@ -104,12 +103,11 @@ class TransaksiExport implements FromCollection, WithHeadings, WithMapping, Shou
                 $sheet->setCellValue("A{$totalRow}", "Total Pemasukan");
                 $sheet->setCellValue("I{$totalRow}", 'Rp ' . number_format($this->totalPemasukan, 0, ',', '.'));
 
-                // Style Baris Total
                 $sheet->getStyle("A{$totalRow}:I{$totalRow}")->getFont()->setBold(true);
+                $sheet->getStyle("A{$totalRow}:I{$totalRow}")->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB('DCE6F1');
                 $sheet->getStyle("A{$totalRow}")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_RIGHT);
                 $sheet->getStyle("I{$totalRow}")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
 
-                // 4. Garis Border Tabel
                 $sheet->getStyle("A4:I{$totalRow}")->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
             },
         ];

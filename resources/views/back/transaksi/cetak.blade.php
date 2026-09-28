@@ -79,7 +79,7 @@
 
                 <div>
                     <h3 class="fw-bold mb-0 text-uppercase receipt-title">HealthPoint Clinic</h3>
-                    <p class="text-muted mb-0 small">Jl. Merdeka No.68, Sekayu, Musi Banyuasin, Sumatera Selatan 30711 | Telp: (021) 555-0199</p>
+                    <p class="text-muted mb-0 small">Jl. Merdeka No.68, Sekayu, Musi Banyuasin, Sumatera Selatan 30711 | Telp: 6283170325118</p>
                 </div>
             </div>
 

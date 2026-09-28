@@ -35,7 +35,7 @@ class ReservasiController extends Controller
             'status'  => 'menunggu',
         ]);
 
-        $nomorWA = '6283170325118'; // Nomor WA Admin Klinik
+        $nomorWA = '6283170325118'; // no wa admin
 
         $pesan  = "*HALO ADMIN HEALTHPOINT CLINIC*\n";
         $pesan .= "Saya ingin mengonfirmasi pendaftaran reservasi online:\n\n";

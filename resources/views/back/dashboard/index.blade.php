@@ -131,7 +131,6 @@
     </div>
 
     <div class="row g-3 mb-4">
-        <!-- Total Artikel -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-stat-modern bg-white shadow-sm p-3">
                 <div class="d-flex justify-content-between align-items-center">
@@ -149,7 +148,6 @@
             </div>
         </div>
 
-        <!-- Total Tenaga Medis -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-stat-modern bg-white shadow-sm p-3">
                 <div class="d-flex justify-content-between align-items-center">
@@ -167,7 +165,6 @@
             </div>
         </div>
 
-        <!-- Total Obat -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-stat-modern bg-white shadow-sm p-3">
                 <div class="d-flex justify-content-between align-items-center">
@@ -185,7 +182,6 @@
             </div>
         </div>
 
-        <!-- Total Transaksi Hari Ini -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-stat-modern bg-white shadow-sm p-3">
                 <div class="d-flex justify-content-between align-items-center">
@@ -205,7 +201,6 @@
     </div>
 
     <div class="row g-4">
-        <!-- Tabel Artikel Terbaru -->
         <div class="col-12 col-lg-6">
             <div class="card card-table shadow-sm p-4 bg-white">
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -221,7 +216,7 @@
                     <table class="table table-custom align-middle mb-0">
                         <thead>
                             <tr class="text-muted small">
-                                <th class="text-center" style="width: 40px;">#</th>
+                                <th class="text-center" style="width: 40px;">No</th>
                                 <th>Judul Artikel</th>
                                 <th>Kategori</th>
                                 <th class="text-center">Dilihat</th>
@@ -266,14 +261,13 @@
             </div>
         </div>
 
-        <!-- Tabel Transaksi Terbaru -->
         <div class="col-12 col-lg-6">
             <div class="card card-table shadow-sm p-4 bg-white">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
                         <h5 class="fw-bold text-dark m-0"><i class="fa-solid fa-receipt text-success me-2"></i>Transaksi
                             Terbaru</h5>
-                        <small class="text-muted">Riwayat transaksi pasien terbaru</small>
+                        <small class="text-muted">Riwayat transaksi terbaru</small>
                     </div>
                     <a href="{{ url('transaksi') }}"
                         class="btn btn-sm btn-light text-success rounded-pill px-3 fw-bold">Lihat Semua</a>
@@ -282,7 +276,7 @@
                     <table class="table table-custom align-middle mb-0">
                         <thead>
                             <tr class="text-muted small">
-                                <th class="text-center" style="width: 40px;">#</th>
+                                <th class="text-center" style="width: 40px;">No</th>
                                 <th>Nama Pasien</th>
                                 <th>NIK</th>
                                 <th class="text-center">Aksi</th>

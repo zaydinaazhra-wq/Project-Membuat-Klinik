@@ -34,7 +34,7 @@ class BerandaController extends Controller
         $obats = Obat::where('stok', '>', 0)
             ->when($search, fn($query, $search) => $query->where('nama_obat', 'like', "%{$search}%"))
             ->latest()
-            ->paginate(10)
+            ->paginate(5)
             ->withQueryString();
 
         return view('front.daftar-obat', compact('obats', 'search'));
