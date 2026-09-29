@@ -190,7 +190,6 @@
 
     <!-- Hero Section -->
     <section id="beranda" class="hero-section-bg py-5 min-vh-100 d-flex align-items-center position-relative">
-        <!-- Gradient Overlay: Gelap di kiri untuk teks, terang/transparan di kanan untuk gambar -->
         <div class="position-absolute top-0 start-0 w-100 h-100"
             style="background: linear-gradient(90deg, rgba(10, 25, 50, 0.92) 0%, rgba(10, 25, 50, 0.7) 50%, rgba(10, 25, 50, 0.3) 100%); z-index: 1;">
         </div>
@@ -198,23 +197,19 @@
         <div class="container py-lg-5 position-relative" style="z-index: 2;">
             <div class="row align-items-center g-5">
                 <div class="col-lg-8 text-center text-lg-start" data-aos="fade-right" data-aos-duration="1000">
-                    <!-- Badge dengan efek menyala ringan -->
                     <span class="badge text-white fw-semibold px-3 py-2 rounded-pill mb-3"
                         style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.25);">
                         <i class="bi bi-patch-check-fill me-1 text-warning"></i>Layanan Kesehatan Terpadu
                     </span>
 
-                    <!-- Judul Utama Tegas & Cerah -->
                     <h1 class="display-4 fw-bold text-white mb-3 lh-sm" style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
                         Solusi Kesehatan Terpercaya <span style="color: #38ef7d; text-shadow: 0 0 12px rgba(56, 239, 125, 0.4);">Untuk Keluarga</span>
                     </h1>
 
-                    <!-- Deskripsi Putih Bersih Mudah Dibaca -->
                     <p class="text-white mb-4 fs-5 pe-lg-3 fw-normal" style="opacity: 0.95; line-height: 1.7; text-shadow: 0 1px 4px rgba(0,0,0,0.8);">
                         HealthPoint Clinic hadir untuk memberikan layanan kesehatan yang profesional, nyaman, dan terpercaya bagi Anda dan keluarga. Dengan dukungan tenaga medis profesional serta informasi kesehatan yang mudah dipahami, kami berkomitmen menjadi bagian dari perjalanan Anda menuju hidup yang lebih sehat.
                     </p>
 
-                    <!-- Tombol CTA Kontras Tinggi -->
                     <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                         <a href="#pemeriksaan" class="btn btn-lg px-4 py-3 rounded-pill shadow-lg fw-bold d-flex align-items-center gap-2 btn-animated text-white" style="background: linear-gradient(135deg, #0062ff, #00a1ff); border: none;">
                             <i class="bi bi-calendar-plus"></i>Reservasi Sekarang
